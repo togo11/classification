@@ -20,7 +20,7 @@ def main():
          transforms.Normalize([0.547, 0.58, 0.52], [0.137, 0.123, 0.124])])
 
     # load image
-    img_path = "/data/dwx/dataset/ani_add_split/train/hua/0101_161白桦.jpg"
+    img_path = ""
     assert os.path.exists(img_path), "file: '{}' dose not exist.".format(img_path)
     img = Image.open(img_path)
     plt.imshow(img)
@@ -29,8 +29,27 @@ def main():
     # expand batch dimension
     img = torch.unsqueeze(img, dim=0)
 
-    print_res = "class: {}   prob: {:.3}".format(str("betula"),
-                                                 0.94)
+    # read class_indict
+    json_path = './class_indices.json'
+    assert os.path.exists(json_path), "file: '{}' dose not exist.".format(json_path)
+
+    json_file = open(json_path, "r")
+    class_indict = json.load(json_file)
+
+    # create model
+    model = create_model.maxvit_tiny_rework_224(num_classes=6).to(device)
+    # load model weights
+    model_weight_path = ""
+    model.load_state_dict(torch.load(model_weight_path, map_location=device))
+    model.eval()
+    with torch.no_grad():
+        # predict class
+        output = torch.squeeze(model(img.to(device))).cpu()
+        predict = torch.softmax(output, dim=0)
+        predict_cla = torch.argmax(predict).numpy()
+
+    print_res = "class: {}   prob: {:.3}".format(class_indict[str(predict_cla)],
+                                                 predict[predict_cla].numpy())
     plt.title(print_res)
     print(print_res)
     plt.show()
