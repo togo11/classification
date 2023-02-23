@@ -58,8 +58,6 @@ def main(args):
                                              collate_fn=val_dataset.collate_fn)
 
     model = create_model.maxvit_tiny_rework_224(num_classes=args.num_classes).to(device)
-    # model = create_model.max_vit_tiny_224(num_classes=args.num_classes).to(device)
-
 
     if args.weights != "":
         assert os.path.exists(args.weights), "weights file: '{}' not exist.".format(args.weights)
