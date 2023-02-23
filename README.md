@@ -22,6 +22,7 @@
 3. 运行`predict.py`脚本对图片进行预测
 
 imgs文件夹中含有越桔属（Vaccinium）、桦属（Betula）、柳属（Salix）、桤木属（Alnus）、杨属（Populus）以及榛属（Corylus）六个种类各一张例图
-预测结果示例图
->![图片](./imgs/populus_predict.png)
+
+**预测结果示例图**
+>![图片](imgs/populus_predict.png)
 
