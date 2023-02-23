@@ -21,7 +21,8 @@
    `model_weight_path`设置为训练好的模型权重路径；`num_classes`与训练时设置的类别数相同
 3. 运行`predict.py`脚本对图片进行预测
 
-imgs文件夹中含有越桔属（Vaccinium）、桦属（Betula）、柳属（Salix）、桤木属（Alnus）、杨属（Populus）以及榛属（Corylus）六个种类各一张例图
+>imgs文件夹中含有越桔属（Vaccinium）、桦属（Betula）、柳属（Salix）、桤木属（Alnus）、杨属（Populus）以及榛属（Corylus）
+>六个种类原图各一张
 
 **预测结果示例图**
 >![图片](imgs/results/populus_predict.png)
